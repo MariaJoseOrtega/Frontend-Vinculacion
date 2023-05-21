@@ -1,0 +1,18 @@
+<div class="grid grid-rows-3 h-[calc(100vh-4rem)]">
+  <div class="bg-primary row-span-1 shadow-md shadow-[#3f51b5a6] z-10 p-6 text-white overflow-hidden relative">
+    <h3 class="text-base opacity-20">
+      Hola <span *ngIf="user">{{ user | FullNameShort }}</span>!
+    </h3>
+
+    <div class="w-full absolute bottom-5 left-0">
+      <div class="w-full flex justify-between items-center p-6">
+        <div>
+          <h2 class="text-xl">Bienvenido al</h2>
+          <h1 class="text-3xl font-bold">Sistema de Vinculación con la Sociedad</h1>
+          <h3 class="text-xl">Yavirac</h3>
+        </div>
+        <div class="rounded-full h-20 w-20 bg-white flex justify-center items-center overflow-hidden p-1">
+          <img src="/assets/images/LogoYavirac.png" alt="logo" />
+        </div>
+      </div>
+    </div>

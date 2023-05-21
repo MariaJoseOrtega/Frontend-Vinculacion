@@ -1,0 +1,5 @@
+#sidebar li.active{
+  background: #19418B;
+  color: white;
+  pointer-events: none;
+}
