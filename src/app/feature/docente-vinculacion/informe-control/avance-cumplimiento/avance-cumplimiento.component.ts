@@ -12,10 +12,14 @@ export class AvanceCumplimientoComponent implements OnInit {
   ) { }
 
   showModal = false;
+  showModal2 = false;
+
   toggleModal(){
     this.showModal = !this.showModal;
   }
-
+  toggleModal2(){
+    this.showModal2 = !this.showModal2;
+  }
 
 
 
@@ -51,22 +55,7 @@ export class AvanceCumplimientoComponent implements OnInit {
 
 
 
-  // public findAll(): void{
-  //   this.avanceCumplimientoHttpService.findAll().subscribe(
-  //     (response) => this.avance = response
-  //   );
-  // }
 
-  // public findByDescription(term:string): void{
-  //   if(term.length >= 2){
-  //     this.avanceCumplimientoHttpService.findByDescription(term).subscribe(
-  //       (response) => this.avance = response
-  //     )
-  //   }
-  //   if(term.length == 0){
-  //     this.findAll();
-  //   }
-  // }
 
   public clicks(){
     var bool=confirm("Seguro que quiere agirnar el tutor estudiante?");
