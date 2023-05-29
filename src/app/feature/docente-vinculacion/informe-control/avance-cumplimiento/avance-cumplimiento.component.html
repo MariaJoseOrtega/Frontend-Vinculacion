@@ -13,14 +13,18 @@
   <div>
     <br>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <!-- Modal toggle -->
+      <button style=" margin-right: 4rem; margin-bottom: 0.5rem; " data-modal-target="defaultModal"
+        data-modal-toggle="defaultModal"
+        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button">
+        Agregar
+      </button>
 
-      <a href="dashboard/informe-control" style="    margin-right: 3rem;">
-        <button class="btn btn-primary" type="button">Agregar</button>
-      </a>
     </div>
     <div class="card" spellcheck="    margin-top: 4rem;">
       <div class="card-body">
-        <H2>Avance cumplimiento de objetivos</H2>
+        <H2 style="color: white;">Avance cumplimiento de objetivos</H2>
 
 
 
@@ -67,14 +71,20 @@
                     <!-- <textarea required    class="form-control" placeholder="Leave a comment here" id=""   [(ngModel)]="avance1.avance"  ></textarea> -->
                   </td>
                   <td>
-                    <button
+                    <!-- <button
                       class="text-black fas fa-edit font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button" (click)="toggleModal()">
                     </button>&nbsp; <button
                       class="text-black fa-solid fa-trash font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button" (click)="toggleModal2()">
-                    </button>
+                    </button> -->
+                    <button type="button"
+                      class="text-white  fas fa-edit  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 
+                    </button>
+                    <button type="button"
+                      class="text-white  fa-trash  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    </button>
                   </td>
 
                 </tr>
@@ -101,13 +111,14 @@
                     <!-- <textarea required    class="form-control" placeholder="Leave a comment here" id=""   [(ngModel)]="avance1.avance"  ></textarea> -->
                   </td>
                   <td>
-                    <button
-                      class="text-black fas fa-edit font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      type="button" (click)="toggleModal()">
-                    </button>&nbsp;
-                    <button
-                      class="text-black fa-solid fa-trash font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      type="button" (click)="toggleModal2()">
+                    <!-- <button type="button" class="text-gray-900 fas fa-edit bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"></button>
+                    <button type="button" class="text-gray-900 fa-solid fa-trash bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"></button> -->
+                    <button type="button"
+                      class="text-white  fas fa-edit  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+                    </button>
+                    <button type="button"
+                      class="text-white  fa-trash  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     </button>
                   </td>
                 </tr>
@@ -237,28 +248,141 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div *ngIf="showModal3"
+              class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+              <div class="relative w-auto my-6 mx-auto max-w-3xl">
+                <!--content-->
+                <div
+                  class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  <div class="relative p-6 flex-auto">
+                    <form>
+                      <div class="row">
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="Last name">
+                        </div>
+                      </div>
+                    </form>
+                    <!--footer-->
+                    <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b ">
+                      <button
+                        class="text-black fas fa-edit font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button" (click)="toggleModal3()">
+                      </button>&nbsp;
+                      <!-- <button
+                        class="text-black fa-solid fa-trash font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button" (click)="toggleModal3()">
+                      </button> -->
+                      <button type="button"
+                        class="text-gray-900 fas fa-edit bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Light</button>
 
-            <a href="/system/docente-vinculacion">
-              <button class="btn btn-primary" type="button" [routerLinkActive]="['tab-active']"
-                routerLink="/system/docente-vinculacion" *permissions="[
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+              <a href="/system/docente-vinculacion">
+                <button class="btn btn-primary" type="button" [routerLinkActive]="['tab-active']"
+                  routerLink="/system/docente-vinculacion" *permissions="[
           'LEER_ROLES',
           'CREAR_ROLES',
           'ACTUALIZAR_ROLES',
           'ELIMINAR_ROLES'
         ]">Atras</button>
-            </a>
-            <a href="/system/docente-vinculacion/informe-control/avance-cumplimiento2">
+              </a>
+              <a href="/system/docente-vinculacion/informe-control/avance-cumplimiento2">
 
-              <button class="btn btn-primary" type="button">Siguiente</button>
-              <!-- <button  class="btn btn-primary" type="button"  (click)="save()">Siguiente</button> -->
-            </a>
+                <button class="btn btn-primary" type="button">Siguiente</button>
+                <!-- <button  class="btn btn-primary" type="button"  (click)="save()">Siguiente</button> -->
+              </a>
 
 
 
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+
+    <!-- Main modal -->
+    <div id="defaultModal" tabindex="-1" aria-hidden="true"
+      class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal header -->
+          <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Avance cumplimiento de objetivos
+            </h3>
+            <button type="button"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              data-modal-hide="defaultModal">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <section class="bg-white dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+              <form action="#">
+                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                  <div class="sm:col-span-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RESUMEN
+                      NARRATIVO </label>
+                    <input type="text" name="name" id="name"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="RESUMEN NARRATIVO" required="">
+                  </div>
+                  <div class="w-full">
+                    <label for="brand"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">INDICADORES</label>
+                    <input type="text" name="brand" id="brand"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="INDICADORES VERIFICABLES" required="">
+                  </div>
+                  <div class="w-full">
+                    <label for="price"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MEDIOS</label>
+                    <input type="number" name="price" id="price"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="MEDIOS DE VERIFICACION" required="">
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">AVANZE
+                      Y CUMPLIMIENTO</label>
+                    <textarea id="description" rows="2"
+                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="AVANZES Y CUMPLIMIENTOS"></textarea>
+                  </div>
+                </div>
+                <!-- <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                        Add product
+                    </button> -->
+              </form>
+            </div>
+          </section>
+          <!-- Modal footer -->
+          <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+
+            <button data-modal-hide="defaultModal" type="button"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">AGREGAR</button>
+
+            <button data-modal-hide="defaultModal" type="button"
+              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">CANCELRAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>
