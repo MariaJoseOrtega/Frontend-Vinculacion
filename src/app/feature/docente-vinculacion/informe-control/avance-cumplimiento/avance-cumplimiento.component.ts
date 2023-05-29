@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AvanceCumplimientoService } from 'src/app/service/avanze_cumplimiento/avance-cumplimiento.service';
 
 @Component({
   selector: 'app-avance-cumplimiento',
@@ -6,26 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./avance-cumplimiento.component.css']
 })
 export class AvanceCumplimientoComponent implements OnInit {
+  form!: FormGroup;
+  id?: string;
+  title!: string;
+  loading = false;
+  submitting = false;
+  submitted = false;
+  addAvanzeForm: avanzeForm = new avanzeForm();
+  avanzeList: any = [];
 
+  @ViewChild("avanzeForm")
+  avanzeForm!: NgForm;
+  isSubmitted: boolean = false;
   constructor(
     // private avanceCumplimientoHttpService:AvanceCumplimientoHttpService
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private httpProvider: AvanceCumplimientoService
+    // private alertService: AlertService
   ) { }
 
-  showModal = false;
-  showModal2 = false;
-  showModal3 = false;
-
-
-  toggleModal(){
-    this.showModal = !this.showModal;
-  }
-  toggleModal2(){
-    this.showModal2 = !this.showModal2;
-  }
-
-  toggleModal3(){
-    this.showModal3 = !this.showModal3;
-  }
 
 
 
@@ -33,41 +38,89 @@ export class AvanceCumplimientoComponent implements OnInit {
   // avance: AvanceCumplimiento = [4];
 
 
-  esvacio:Boolean=false ;
+  esvacio: Boolean = false;
 
 
   ngOnInit(): void {
-    // this.findAll();
-    this.esvacio=false;
+
+    
+    this.getAllAvanze();
 
   }
 
-  save():void{
 
+  public addAvanze(isValid: any) {
+    this.isSubmitted = true;
+    if (isValid) {
+      console.log(this.addAvanzeForm);
 
-    // for(let avance1 of this.avance){
-    //    if (avance1.avance==''){
+      this.httpProvider.addAvanze(this.addAvanzeForm).subscribe(async data => {
+        if (data != null && data.body != null) {
+          if (data != null && data.body != null) {
+            var resultData = data.body;
+            if (resultData != null && resultData.isSuccess) {
+              console.log(resultData.message);
 
-    //     this.esvacio=true;
-        
-    //    }else{
-    //     this.avanceCumplimientoHttpService.save(avance1).subscribe()
-    //    }
+              // setTimeout(() => {
+              //   this.router.navigate(['/Home']);
+              // }, 500);
+            }
+          }
+        }
+      },
+        async error => {
+          console.log(error.message);
 
-    // }
+          // setTimeout(() => {
+          //   this.router.navigate(['/Home']);
+          // }, 500);
+        });
     }
+  }
 
+  public getAllAvanze() {
+    this.httpProvider.getAvanze().subscribe((data: any) => {
+      
+    
+      
+      if (data.data.avanzes != null && data.data.avanzes != null) {
+        var resultData = data.data.avanzes;
+        if (resultData) {
+          console.log(resultData);
+          
+          this.avanzeList = resultData;
+        }
+      }
+    },
+      (error: any) => {
+        if (error) {
+          if (error.status == 404) {
+            if (error.error && error.error.message) {
+              this.avanzeList = [];
+            }
+          }
+        }
+      });
+  }
 
+  public deleteAvanzeConfirmation(avance: any) {
+    this.httpProvider.deleteAvanzeById(avance.id).subscribe((data: any) => {
+      if (data != null && data.body != null) {
+        var resultData = data.body;
+        if (resultData != null && resultData.isSuccess) {
+          // this.toastr.success(resultData.message);
+          console.log(resultData.message);
+          this.getAllAvanze();
+        }
+      }
+    },
+      (error: any) => { });
+  }
 
-
-
-
-  public clicks(){
-    var bool=confirm("Seguro que quiere agirnar el tutor estudiante?");
-    if(bool){
-      alert("Se asigni el tutor al estudiante");
-    }else{
-      alert("cancelo la solicitud");
-    }
-  };
+}
+export class avanzeForm {
+  resumen: string = "";
+  indicadores: string = "";
+  medios: string = "";
+  avanze: string = "";
 }
