@@ -61,9 +61,7 @@ export class AvanceCumplimientoComponent implements OnInit {
             if (resultData != null && resultData.isSuccess) {
               console.log(resultData.message);
 
-              // setTimeout(() => {
-              //   this.router.navigate(['/Home']);
-              // }, 500);
+              window.location.reload();
             }
           }
         }
@@ -122,5 +120,5 @@ export class avanzeForm {
   resumen: string = "";
   indicadores: string = "";
   medios: string = "";
-  avanze: string = "";
+  observacion: string = "";
 }
