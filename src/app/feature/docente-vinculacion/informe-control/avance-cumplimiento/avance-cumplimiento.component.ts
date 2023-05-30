@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AvanceCumplimientoService } from 'src/app/service/avanze_cumplimiento/avance-cumplimiento.service';
+import { AvanzeCumplimientoModels } from 'src/app/models/avanze/avanze_cumplimiento/avanze_cumplimiento';
 
 @Component({
   selector: 'app-avance-cumplimiento',
@@ -18,10 +19,21 @@ export class AvanceCumplimientoComponent implements OnInit {
   submitted = false;
   addAvanzeForm: avanzeForm = new avanzeForm();
   avanzeList: any = [];
-
+  idTodelete: number = 0;
+  idToupdate: number = 0;
   @ViewChild("avanzeForm")
+
   avanzeForm!: NgForm;
+
   isSubmitted: boolean = false;
+  post: AvanzeCumplimientoModels = {
+    id: 0,
+    resumen: '',
+    indicadores: '',
+    medios: '',
+    observacion: '',
+
+  };
   constructor(
     // private avanceCumplimientoHttpService:AvanceCumplimientoHttpService
     private formBuilder: FormBuilder,
@@ -43,7 +55,7 @@ export class AvanceCumplimientoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+
     this.getAllAvanze();
 
   }
@@ -52,19 +64,16 @@ export class AvanceCumplimientoComponent implements OnInit {
   public addAvanze(isValid: any) {
     this.isSubmitted = true;
     if (isValid) {
-      console.log(this.addAvanzeForm);
-
       this.httpProvider.addAvanze(this.addAvanzeForm).subscribe(async data => {
-        if (data != null && data.body != null) {
-          if (data != null && data.body != null) {
-            var resultData = data.body;
-            if (resultData != null && resultData.isSuccess) {
-              console.log(resultData.message);
 
+        if (data.data.avanze != null && data.data.avanze != null) {
+          if (data.status === 'success') {
+            setTimeout(() => {
               window.location.reload();
-            }
+            }, 500);
           }
         }
+
       },
         async error => {
           console.log(error.message);
@@ -78,14 +87,14 @@ export class AvanceCumplimientoComponent implements OnInit {
 
   public getAllAvanze() {
     this.httpProvider.getAvanze().subscribe((data: any) => {
-      
-    
-      
+
+
+
       if (data.data.avanzes != null && data.data.avanzes != null) {
         var resultData = data.data.avanzes;
         if (resultData) {
           console.log(resultData);
-          
+
           this.avanzeList = resultData;
         }
       }
@@ -101,15 +110,47 @@ export class AvanceCumplimientoComponent implements OnInit {
       });
   }
 
-  public deleteAvanzeConfirmation(avance: any) {
-    this.httpProvider.deleteAvanzeById(avance.id).subscribe((data: any) => {
-      if (data != null && data.body != null) {
-        var resultData = data.body;
-        if (resultData != null && resultData.isSuccess) {
-          // this.toastr.success(resultData.message);
-          console.log(resultData.message);
-          this.getAllAvanze();
-        }
+  public openDeleteModal(id: number) {
+
+    this.idTodelete = id;
+  }
+
+  public openUpdateModal(id: number) {
+    this.idToupdate = id;
+
+    this.getById(id);
+
+  }
+  public getById(id: number) {
+    this.httpProvider.getAvanzeById(id).subscribe((data) => {
+      console.log(data);
+
+      this.post = data.data.avanze[0];
+
+
+    });
+  }
+
+  public update() {
+    this.httpProvider.updateAvanze(this.idToupdate,this.post)
+    .subscribe({
+      next:(data) => {
+        console.log(data);
+        
+        window.location.reload();
+      },
+      error:(err) => {
+        console.log(err);
+      }
+    })
+  }
+  public delete() {
+    this.httpProvider.deleteAvanzeById(this.idTodelete).subscribe((data: any) => {
+      console.log(data);
+      if (data.status === 'success') {
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       }
     },
       (error: any) => { });

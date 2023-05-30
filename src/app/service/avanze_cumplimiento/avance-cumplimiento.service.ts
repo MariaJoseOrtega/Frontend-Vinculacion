@@ -19,7 +19,7 @@ export class AvanceCumplimientoService {
     console.log(data);
 
     return this.http.post<any>(
-      `${this.url}/create`,  data,
+      `${this.url}/create`, data,
       this.httpOptions
     );
   }
@@ -30,14 +30,29 @@ export class AvanceCumplimientoService {
       this.httpOptions
     );
   }
+  public getAvanzeById(id:any): Observable<any> {
+
+    return this.http.get<any>(
+      `${this.url}/${id}`,
+      this.httpOptions
+    );
+  }
+  
+  public updateAvanze(id: any, data: any): Observable<any> {
+
+    return this.http.put(
+      `${this.url}/update/${id}`, data, this.httpOptions
+    );
+  }
+
 
   public deleteAvanzeById(id: any): Observable<any> {
 
-    return this.http.post<any>(
-      `${this.url}/deleteAvanze?avanzeId`, id,this.httpOptions
+    return this.http.delete<any>(
+      `${this.url}/delete/${id}`, this.httpOptions
     );
 
   }
 
-  
+
 }

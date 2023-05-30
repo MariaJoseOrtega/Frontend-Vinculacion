@@ -62,9 +62,6 @@ const routes: Routes = [
         ],
       },
 
-
-
-
       {
         path: 'portafolio',
         children: [

@@ -63,11 +63,12 @@
                       <div
                         class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
 
-                        <label for="my-modal"
-                          class="text-white  fas fa-edit  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"></label>
+                        <label for="my-modal" (click)="openUpdateModal(avanze.id)"
+                          class="text-white  fas fa-edit  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        </label>
 
 
-                        <label for="my-modal-2"
+                        <label for="my-modal-2" (click)="openDeleteModal(avanze.id)"
                           class="text-white  fa-trash  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"></label>
                       </div>
                     </td>
@@ -90,7 +91,7 @@
                   'ACTUALIZAR_ROLES',
                   'ELIMINAR_ROLES'
                 ]">Atras</button>
-              </a>
+              </a>&nbsp;
               <a href="/system/docente-vinculacion/informe-control/avance-cumplimiento2">
 
                 <button class="btn btn-primary" type="button">Siguiente</button>
@@ -180,58 +181,59 @@
       </div>
     </div>
 
-    <!--Main modal delete--->
+    <!--Main modal EDIT--->
     <input type="checkbox" id="my-modal" class="modal-toggle" />
-    <div class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box">
+    <label for="my-modal" class="modal cursor-pointer">
+      <label class="modal-box relative" for="">
         <section class="bg-white dark:bg-gray-900">
           <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-            <form action="#">
+            <form>
               <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
-                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RESUMEN
+                  <label for="resumen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RESUMEN
                     NARRATIVO </label>
-                  <input type="text" name="name" id="name"
+                  <input type="text" name="resumen" id="resumen" [(ngModel)]="post.resumen"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="RESUMEN NARRATIVO" required="">
+                    required="">
+
                 </div>
                 <div class="w-full">
-                  <label for="brand"
+                  <label for="indicadores"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">INDICADORES</label>
-                  <input type="text" name="brand" id="brand"
+                  <input type="text" name="indicadores" id="indicadores" [(ngModel)]="post.indicadores"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="INDICADORES VERIFICABLES" required="">
+                    placeholder="INDICADORES VERIFICABLES">
                 </div>
                 <div class="w-full">
-                  <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MEDIOS</label>
-                  <input type="number" name="price" id="price"
+                  <label for="medios"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MEDIOS</label>
+                  <input type="text" name="medios" id="medios" [(ngModel)]="post.medios"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="MEDIOS DE VERIFICACION" required="">
                 </div>
                 <div class="sm:col-span-2">
-                  <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">AVANZE
+                  <label for="observacion " class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">AVANZE
                     Y CUMPLIMIENTO</label>
-                  <textarea id="description" rows="2"
+                  <textarea id="observacion" name="observacion" rows="2" [(ngModel)]="post.observacion"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="AVANZES Y CUMPLIMIENTOS"></textarea>
                 </div>
               </div>
               <!-- <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                   Add product
-               </button> -->
+               Add product
+           </button> -->
             </form>
           </div>
         </section>
         <div class="modal-action">
-          <label for="my-modal" class="btn">Yay!</label>
+          <label (click)="update()" for="my-modal" class="btn">actualizar</label>
         </div>
-      </div>
-    </div>
+      </label>
+    </label>
+ 
 
 
-
-    <!--Main modal EDIT--->
-    <label for="my-modal-2" class="btn">open modal</label>
+    <!--Main modal DELETE--->
     <input type="checkbox" id="my-modal-2" class="modal-toggle" />
     <div class="modal">
       <div class="modal-box relative">
@@ -244,7 +246,7 @@
           </svg>
           <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Está seguro de que desea eliminar
             este registro?</h3>
-          <label for="my-modal-2"
+          <label for="my-modal-2" (click)="delete()"
             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
             Yes, OK
           </label>

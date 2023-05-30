@@ -143,7 +143,6 @@ import { InformeFinalEstudianteComponent } from './estudiante/informe-final-estu
     ProvincesComboboxComponent,
     CantonsComboboxComponent,
     ParishesComboboxComponent,
-
     
     SolicitudBreadcrumbsComponent,
     SolicitudTabsComponent,
